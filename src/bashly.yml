@@ -1,0 +1,26 @@
+name: generate_code_python
+help: Generates a python code project
+version: 0.1.0
+
+args:
+  - name: project_name
+    required: true
+    help: Name of the code project
+  - name: package_name
+    help: Name of the package
+
+flags:
+  - long: --holder
+    help: Name of the license holder
+    arg: lic_holder
+    default: tfoerst3r
+  - long: --email
+    help: Email contect of license holder
+    arg: lic_email
+    default: 32761865+tfoerst3r@users.noreply.github.com
+  - long: --git
+    help: URL to a git repo 
+    arg: git_repo
+
+
+
