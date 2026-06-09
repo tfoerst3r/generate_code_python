@@ -31,6 +31,7 @@ update_variables
 create_python_layout "$PROJECT_NAME" "$PACKAGE_NAME"
 create_readme "$PROJECT_NAME"
 create_gitignore $CODETYPE
+create_vscode_debugger $CODETYPE
 
 #.. final creation step
 create_license "$PROJECT_NAME" "$LIC_HOLDER" "$LIC_EMAIL"

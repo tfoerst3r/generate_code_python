@@ -140,10 +140,10 @@ cython_debug/
 #== MAIN ==#
 #==========#
 function main {
-  
-  cd "$PROJECT_NAME"
-  echo "<==== .gitignore is written ====>"
-  echo "${GITIGNORE[$LANG]}" > .gitignore
+
+cd "$PROJECT_NAME"
+echo "<==== .gitignore is written ====>"
+echo "${GITIGNORE[$LANG]}" > .gitignore
 
 }
 

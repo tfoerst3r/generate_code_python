@@ -1,4 +1,4 @@
-<!--
+!--
 SPDX-FileCopyrightText: 2026 tfoerst3r <32761865+tfoerst3r@users.noreply.github.com>
 
 SPDX-License-Identifier: CC-BY-4.0

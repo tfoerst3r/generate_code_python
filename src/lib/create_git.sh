@@ -26,7 +26,7 @@ function main {
   cd "$PROJECT_NAME"
 
   git init
-  git add *
+  git add .gitignore *
   git commit -m "Initial Commit"
 
 if [[ -n "$GIT_REPO" ]]; then
