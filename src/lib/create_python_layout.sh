@@ -44,10 +44,14 @@ echo "$cli_content" > cli.py
 function base {
 # $PACKAGE_NAME.py content
 base_content="
-def __hidden():
+
+def __hidden() -> None:
     print('$PACKAGE_NAME call')
-def $PACKAGE_NAME():
+
+
+def $PACKAGE_NAME() -> None:
     __hidden()
+
 "
 echo "$base_content" > $PACKAGE_NAME.py
 }
