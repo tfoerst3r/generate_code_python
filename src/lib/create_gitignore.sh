@@ -18,6 +18,9 @@ PROJECT_NAME="${args[project_name]}"
 declare GITIGNORE[python]="# misc 
 *.log
 
+# container secrets
+secrets/
+
 # vim tempory files
 *.sw?
 jabref.xml
@@ -92,7 +95,7 @@ __pypackages__/
 *.pid
 
 # Environments
-.env
+.env # here are your local credentials stored
 .envrc
 .venv
 env/

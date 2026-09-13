@@ -13,11 +13,11 @@ flags:
   - long: --holder
     help: Name of the license holder
     arg: lic_holder
-    default: tfoerst3r
+    default: "Thomas Förster"
   - long: --email
     help: Email contect of license holder
     arg: lic_email
-    default: 32761865+tfoerst3r@users.noreply.github.com
+    default: noreply@tfoerster.de
   - long: --git
     help: URL to a git repo 
     arg: git_repo

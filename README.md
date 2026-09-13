@@ -1,5 +1,5 @@
 !--
-SPDX-FileCopyrightText: 2026 tfoerst3r <32761865+tfoerst3r@users.noreply.github.com>
+SPDX-FileCopyrightText: 2026 Thomas Förster <noreply@tfoerster.de>
 
 SPDX-License-Identifier: CC-BY-4.0
 -->
@@ -27,7 +27,7 @@ This script routine was develop to speedup python project publication.
 
 ### Installation
 
-Changing the default license holder and license contact by changing `default: tfoerst3r` and `default: *@*` to your contact informations.
+Changing the default license holder and license contact by changing `default: Max Musterman` and `default: *@*` to your contact informations.
 
 ``` bash
 $ cat src/bashly.yml
@@ -65,19 +65,90 @@ created ./generate_code_python
 
 ## Usage
 
+### Generating the Python Project
+
 Using the scripts help:
 
 ``` bash
 $ bash generate_code_python --help
 ```
 
-Example:
+>[!EXAMPLE]
+> 
+>~~~ bash
+>bash generate_code_python cli cli_openai --git GIT_REPO_URL
+>~~~
+>
+> The `GIT_REPO_URL` should be compatible with the git command: `git remote add origin $GIT_REPO_URL`.
+>
+> What happens?: 
+> - Python packages `ruff` and `pytest` are installed.
+> - All files are licenced and licenses are downloaded
+> - git repo is created
+> - base structure for start working on *CLI*, *Module*, *Library* is created
+>
+>~~~bash
+>Created package cli_openai in cli
+>Creating virtualenv cli-openai in /home/tfoerst/sandbox/pytt/cli/.venv
+>Using version ^0.16.7 for ruff
+>Using version ^9.1.1 for pytest
+>
+>...
+>Installing the current project: cli-openai (0.1.0)
+><==== README is written in cli/README.md ====>
+><==== .gitignore is written ====>
+><==== launch.json is written in .vscode ====>
+><==== tasks.json is written in .vscode ====>
+>...
+>~~~
 
-``` bash
-$ bash generate_code_python cli cli_openai --git GIT_REPO_URL
+### Initial Python Project 
+
+Based on the given example the project has now the following structure:
+
+```bash
+cli/
+├── LICENSE.md
+├── LICENSES
+│   ├── CC0-1.0.txt
+│   ├── CC-BY-4.0.txt
+│   └── MIT.txt
+├── poetry.lock
+├── poetry.lock.license
+├── poetry.toml
+├── pyproject.toml
+├── README.md
+├── src
+│   └── cli_openai
+│       ├── cli.py
+│       ├── __init__.py
+│       ├── __main__.py
+│       └── util.py
+└── tests
+    ├── conftest.py
+    ├── __init__.py
+    └── test_cli_openai.py
 ```
 
-The `GIT_REPO_URL` should be compatible with the git command: `git remote add origin $GIT_REPO_URL`.
+**Library:** the following python code would work.
+
+```python
+from cli_openai.util import foo
+foo()
+```
+
+Module: you can execute the module.
+
+```bash
+poetry run python -m cli_openai
+```
+
+CLI: using the command line interface `cli_openai`.
+
+```bash
+poetry run cli_openai
+```
+
 
 ## Contributing
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# SPDX-FileCopyrightText: 2026 tfoerst3r <32761865+tfoerst3r@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2026 Thomas Foerster <noreply@tfoerster.de>
 #
 # SPDX-License-Identifier: MIT
 
@@ -160,15 +160,13 @@ Please see the individual files for more accurate information.
 ) }
 
 #=== STANDALONE PROCESS ===#
-# if [[ "${BASH_SOURCE[0]}" == "${0}" ]] && ! declare -f initialize >/dev/null && ! declare -f run >/dev/null; then
-
 if [[ "$(basename "${BASH_SOURCE[0]}")" == "$_target_sa"* ]]; then
 
     #================#
     #== USER INPUT ==#
     #================#
     DEFAULT_LIC_HOLDER="tfoerst3r"
-    DEFAULT_LIC_EMAIL="32761865+tfoerst3r@users.noreply.github.com"
+    DEFAULT_LIC_EMAIL="noreply@tfoerster.de"
     _default_lic=0
     _replace_lic=0
 
@@ -179,7 +177,8 @@ if [[ "$(basename "${BASH_SOURCE[0]}")" == "$_target_sa"* ]]; then
     if [[ $_replace_lic == 1 ]]; then
         
         echo "--replace not implemented, yet!"
-        #.. Should replace either holder or license or both, may be not a good idea, when doing accidentily
+        #.. Should replace either holder or license or both
+        #.. This is probably not a good idea, when doing accidentily
         #sed -i '/SPDX-/d' <file>
         #exit 0
     fi

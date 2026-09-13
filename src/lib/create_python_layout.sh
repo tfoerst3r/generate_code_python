@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2026 tfoerst3r <32761865+tfoerst3r@users.noreply.github.com>
+# SPDX-FileCopyrightText: 2026 Thomas Förster <noreply@tfoerster.de>
 #
 # SPDX-License-Identifier: MIT
 
@@ -20,7 +20,7 @@ PACKAGE_NAME="$2"
 function __main__ {
 # __main__.py content
 main_content="
-from $PACKAGE_NAME.cli import cli as main
+from $PACKAGE_NAME.cli import main
 
 if __name__ ==\"__main__\":
   main()
@@ -33,7 +33,7 @@ echo "$main_content" > __main__.py
 function cli {
 # cli.py content
 cli_content="
-def cli():
+def main():
     print('CLI call')
 "
 echo "$cli_content" > cli.py
@@ -46,14 +46,14 @@ function base {
 base_content="
 
 def __hidden() -> None:
-    print('$PACKAGE_NAME call')
+    print('foo is called!')
 
 
-def $PACKAGE_NAME() -> None:
+def foo() -> None:
     __hidden()
 
 "
-echo "$base_content" > $PACKAGE_NAME.py
+echo "$base_content" > util.py
 }
 
 #---------------#
@@ -61,10 +61,10 @@ echo "$base_content" > $PACKAGE_NAME.py
 function __init__ {
 # __init__.py content
 init_content="
-from $PACKAGE_NAME.$PACKAGE_NAME import (
-    $PACKAGE_NAME, # noqa: F401
+from $PACKAGE_NAME.util import (
+    foo, # noqa: F401
 )
-__all__ = ['$PACKAGE_NAME',]
+__all__ = ['foo',]
 
 "
 echo "$init_content" >> __init__.py
@@ -116,7 +116,16 @@ echo "$test_content"     > test_${PACKAGE_NAME}.py
 
 }
 
-#---------------#
+function pyproject (
+
+echo '[project.scripts]' >> pyproject.toml
+echo "${PACKAGE_NAME} = \"${PACKAGE_NAME}.cli:main\"" >> pyproject.toml
+
+)
+
+#=============#
+#== TESTING ==#
+#=============#
 
 function test_empty_var {
 if [ -z "$PACKAGE_NAME" ] || [ -z "$PROJECT_NAME" ]; then
@@ -125,7 +134,9 @@ if [ -z "$PACKAGE_NAME" ] || [ -z "$PROJECT_NAME" ]; then
 fi
 }
 
-#---------------#
+#==========#
+#== MAIN ==#
+#==========#
 
 function testing {
   test_empty_var
@@ -145,14 +156,16 @@ function main {
   base      # function call
   __init__  # function call
   cd ../../tests
-  pytest
-  cd ../..
+  pytest    # function call
+  cd ..
+  pyproject
+  poetry install
+  cd ..
 
 }
 
-#==========#
-#== MAIN ==#
-#==========#
+#---------------#
+
 testing
 main
 
